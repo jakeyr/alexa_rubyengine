@@ -10,6 +10,8 @@ PATH
   remote: .
   specs:
     alexa_rubyengine (1.0.0)
+      activesupport (> 0)
+      muni (> 0)
       sinatra (~> 1.4)
 
 GEM
@@ -81,11 +83,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activesupport (> 0)
   alexa_rubyengine!
   alexa_rubykit!
   bundler (~> 1.10.6)
-  muni (> 0)
   rake (~> 10.0)
 
 BUNDLED WITH
