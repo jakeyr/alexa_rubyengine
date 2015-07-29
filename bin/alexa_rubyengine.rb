@@ -38,8 +38,8 @@ post '/' do
   if (request.type == 'LAUNCH_REQUEST')
     # Process your Launch Request
     # Call your methods for your application here that process your Launch Request.
-    response.add_speech('Ruby running ready!')
-    response.add_hash_card( { :title => 'Ruby Run', :subtitle => 'Ruby Running Ready!' } )
+    #response.add_speech('Ruby running ready!')
+    #response.add_hash_card( { :title => 'Ruby Run', :subtitle => 'Ruby Running Ready!' } )
   end
 
   if (request.type == 'INTENT_REQUEST')
@@ -47,7 +47,7 @@ post '/' do
     p "#{request.slots}"
     p "#{request.name}"
     response.add_speech("I received an intent named #{request.name}?")
-    response.add_hash_card( { :title => 'Ruby Intent', :subtitle => "Intent #{request.name}" } )
+    #response.add_hash_card( { :title => 'Ruby Intent', :subtitle => "Intent #{request.name}" } )
   end
 
   if (request.type =='SESSION_ENDED_REQUEST')
