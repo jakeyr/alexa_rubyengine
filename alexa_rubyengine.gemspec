@@ -29,5 +29,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.10.6"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "muni", "> 0"
+  spec.add_development_dependency "activesupport", "> 0"
   spec.add_runtime_dependency "sinatra", "~> 1.4"
 end

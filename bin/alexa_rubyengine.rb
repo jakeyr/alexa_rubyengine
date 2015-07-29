@@ -4,6 +4,8 @@ require 'sinatra'
 require 'json'
 require 'bundler/setup'
 require 'alexa_rubykit'
+require 'muni'
+require 'active_support/core_ext/string'
 
 # We must return application/json as our content type.
 before do
@@ -45,8 +47,9 @@ post '/' do
   if (request.type == 'INTENT_REQUEST')
     # Process your Intent Request
     p "#{request.slots}"
-    p "#{request.name}"
-    response.add_speech("I received an intent named #{request.name}?")
+    p "#{request.slots['Bus']['value']}"
+    time = Muni::Route.find(request.slots['Bus']['value']).method(request.slots['Direction']['value']).call.stop_at("Sansome and Sutter").predictions.map { |pred| pred.pretty_time }.to_sentence
+    response.add_speech("The #{request.slots['Bus']['value']} bus going #{request.slots['Direction']['value']} will be arriving in #{time}")
     #response.add_hash_card( { :title => 'Ruby Intent', :subtitle => "Intent #{request.name}" } )
   end
 
