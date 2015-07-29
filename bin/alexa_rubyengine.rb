@@ -48,8 +48,9 @@ post '/' do
     # Process your Intent Request
     p "#{request.slots}"
     p "#{request.slots['Bus']['value']}"
-    time = Muni::Route.find(request.slots['Bus']['value']).method(request.slots['Direction']['value']).call.stop_at("Sansome and Sutter").predictions.map { |pred| pred.pretty_time }.to_sentence
-    response.add_speech("The #{request.slots['Bus']['value']} bus going #{request.slots['Direction']['value']} will be arriving in #{time}")
+    direction = request.slots['Direction']['value'].start_with?("in") ? "inbound" : "outbound"
+    time = Muni::Route.find(request.slots['Bus']['value']).method(direction).call.stop_at("Sansome and Sutter").predictions.map { |pred| pred.pretty_time }.to_sentence
+    response.add_speech("The #{request.slots['Bus']['value']} bus going #{direction} will be arriving in #{time}")
     #response.add_hash_card( { :title => 'Ruby Intent', :subtitle => "Intent #{request.name}" } )
   end
 
